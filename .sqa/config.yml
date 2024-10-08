@@ -1,0 +1,72 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/IdentityPython/SATOSA:
+      branch: master
+      repo: https://github.com/IdentityPython/SATOSA
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/IdentityPython/SATOSA git:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-linen-lobster.sh
+        container: qc.acc_pretty-sangria-grasshopper
+  QC.Doc:
+    repos:
+      github.com/IdentityPython/SATOSA find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.snazzy-olivine-squirt.sh
+        container: qc.doc_thirsty-amber-serval
+      github.com/IdentityPython/SATOSA git:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-purple-uguisu.sh
+        container: qc.doc_shaggy-wisteria-elephant
+      github.com/IdentityPython/SATOSA markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.geeky-heliotrope-moth.sh
+        container: qc.doc_pokey-violet-whippet
+      github.com/IdentityPython/SATOSA restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-olivine-dunker.sh
+        container: qc.doc_surly-seashell-dingo
+  QC.Lic:
+    repos:
+      github.com/IdentityPython/SATOSA licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-fuchsia-fossa.sh
+        container: qc.lic_gloppy-russet-echidna
+  QC.Sec:
+    repos:
+      github.com/IdentityPython/SATOSA bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-denim-tamarin.sh
+        container: qc.sec_trippy-plum-bear
+  QC.Sty:
+    repos:
+      github.com/IdentityPython/SATOSA flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-red-fossa.sh
+        container: qc.sty_lanky-brass-capuchin
+      github.com/IdentityPython/SATOSA hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-cardinal-magpie.sh
+        container: qc.sty_wheezy-wheat-lizard
+  QC.Uni:
+    repos:
+      github.com/IdentityPython/SATOSA pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.lanky-saffron-iguana.sh
+        container: qc.uni_tasty-smalt-sponge
+  QC.Ver:
+    repos:
+      github.com/IdentityPython/SATOSA get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.snoopy-cardinal-reindeer.sh
+        container: qc.ver_nerdy-rust-hippopotamus
+timeout: 5400
