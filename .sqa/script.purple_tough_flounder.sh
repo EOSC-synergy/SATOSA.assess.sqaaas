@@ -5,5 +5,5 @@
 
 (
 cd github.com/IdentityPython/SATOSA &&
-    mdl --json .
+    bandit -f json --quiet  --confidence-level high --severity-level high --recursive  .
 )
